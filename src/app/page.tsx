@@ -1,4 +1,3 @@
-import { Sun } from 'lucide-react'
 import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 
@@ -20,7 +19,6 @@ import { SpaceContainer } from './components/layout/SpaceContainer'
 import { TreatmentBox } from './components/layout/TreatmentBox'
 import { Card } from './components/surfaces/Card'
 import { Hero } from './components/surfaces/Hero'
-import { InformationBanner } from './components/surfaces/InformationBanner'
 import { JsonLd } from './components/surfaces/JsonLd'
 import Testimonials from './components/surfaces/Testimonials/Testimonials'
 import { A } from './components/typography/A'
@@ -74,12 +72,6 @@ export default async function Home() {
   return (
     <>
       <JsonLd data={schemaData} />
-      <InformationBanner
-        icon={Sun}
-        title={tCommon('informationBanner.title')}
-      >
-        {tCommon('informationBanner.body')}
-      </InformationBanner>
       <Hero />
       <Card
         bgColor={BgColors.White}
@@ -135,7 +127,7 @@ export default async function Home() {
       <SpaceContainer noPadding spaceTop>
         <Card
           bgColor={BgColors.Beige}
-          className="before:bg-[50%_30%]"
+          className="before:bg-position-[50%_30%]"
           content={
             <>
               <H2 upperCase className="text-center">
@@ -153,7 +145,7 @@ export default async function Home() {
 
       {/* About Section */}
       <Card
-        className="before:[background-size:500%] before:bg-[30%_40%]"
+        className="before:bg-size-[500%] before:bg-position-[30%_40%]"
         bgColor={BgColors.White}
         content={
           <Pillar>
