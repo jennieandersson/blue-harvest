@@ -1,3 +1,10 @@
+# [1.33.0](https://github.com/dahliakliniken/drgribbe/compare/v1.32.0...v1.33.0) (2026-08-16)
+
+
+### Features
+
+* remove banner, update pkgs ([#297](https://github.com/dahliakliniken/drgribbe/issues/297)) ([8251031](https://github.com/dahliakliniken/drgribbe/commit/825103176be05b4349588e12d88dbc70f3cd9d57))
+
 # [1.32.0](https://github.com/dahliakliniken/drgribbe/compare/v1.31.0...v1.32.0) (2026-06-25)
 
 
