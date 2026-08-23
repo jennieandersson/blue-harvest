@@ -30,6 +30,7 @@
     },
     "capsuleGuarantee": {
       "title": "Kapselgaranti under fem år",
+      "description": "Kapselgarantin täcker två stycken kapseloperationer, operation av stram, hård kapsel i fem år efter bröstoperationen.",
       "points": {
         "point1": "Kapselkontraktion, hård kapsel"
       },
@@ -38,7 +39,7 @@
     },
     "followUps": {
       "title": "Återbesök, extrabesök och uppföljning",
-      "description": "Återbesök sker alltid ca 9-14 dagar efter operationen och 4-6 månader efter operationen för kontroll att allt ser bra ut. Därefter är du välkommen på gratis extrabesök om och när du vill. Uppföljning sker efter 2 år då ytterligare en kontroll att allt ser bra ut görs."
+      "description": "Återbesök sker alltid ca 9-14 dagar efter operationen och 4-6 månader efter operationen för kontroll att allt ser bra ut. Därefter är du välkommen på gratis extrabesök om och när du vill."
     },
     "philosophy": {
       "heading": "Dahliaklinikens filosofi",
