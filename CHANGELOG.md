@@ -1,3 +1,10 @@
+# [1.36.0](https://github.com/dahliakliniken/drgribbe/compare/v1.35.0...v1.36.0) (2026-08-23)
+
+
+### Features
+
+* update hero image ([#300](https://github.com/dahliakliniken/drgribbe/issues/300)) ([80c4d09](https://github.com/dahliakliniken/drgribbe/commit/80c4d0971a656c865871f9b0c23b254651b448bd))
+
 # [1.35.0](https://github.com/dahliakliniken/drgribbe/compare/v1.34.0...v1.35.0) (2026-08-23)
 
 
