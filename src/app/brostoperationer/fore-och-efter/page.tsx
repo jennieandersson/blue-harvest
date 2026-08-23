@@ -1,19 +1,20 @@
-import { Metadata } from 'next'
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 
-export const metadata: Metadata = {
+import ForeOchEfter from './ForeOchEfter'
+
+export const metadata = createPageMetadata({
   title: 'Före och efter - Dahliakliniken',
   description:
     'Utforska imponerande före och efter-resultat av Dr Gribbes bröstoperationer. Se verkliga patienters förvandlingar och upptäck möjligheterna för din egen förändring.',
-  openGraph: {
-    title: 'Före och efter - Dahliakliniken',
-    description:
-      'Utforska imponerande före och efter-resultat av Dr Gribbes bröstoperationer. Se verkliga patienters förvandlingar och upptäck möjligheterna för din egen förändring.'
-  },
-  twitter: {
-    title: 'Före och efter - Dahliakliniken',
-    description:
-      'Utforska imponerande före och efter-resultat av Dr Gribbes bröstoperationer. Se verkliga patienters förvandlingar och upptäck möjligheterna för din egen förändring.'
-  }
-}
+  path: '/brostoperationer/fore-och-efter'
+})
 
-export { default } from './ForeOchEfter'
+export default function Page() {
+  return (
+    <>
+      <BreadcrumbJsonLd path="/brostoperationer/fore-och-efter" />
+      <ForeOchEfter />
+    </>
+  )
+}

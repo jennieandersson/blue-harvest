@@ -1,14 +1,27 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
+
+import {
+  canonicalUrl,
+  isPreviewDeployment,
+  NOINDEX_PATHS
+} from '@/app/config/site'
 
 export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: [
-      {
+  if (isPreviewDeployment) {
+    return {
+      rules: {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/private/', '/tack']
+        disallow: '/'
       }
-    ],
-    sitemap: process.env.SITE_URL || 'https://www.dahliakliniken.se'
+    }
+  }
+
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: [...NOINDEX_PATHS]
+    },
+    sitemap: `${canonicalUrl()}/sitemap.xml`
   }
 }

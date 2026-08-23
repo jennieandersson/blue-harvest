@@ -1,5 +1,5 @@
-import { Metadata } from 'next'
-
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 import {
   canonicalUrl,
   DATE_PUBLISHED,
@@ -11,21 +11,12 @@ import { getLastModified } from '@/utils/getLastModified'
 
 import Brostlyft from './Brostlyft'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Bröstlyft i Stockholm - Dahliakliniken',
   description:
     'Om brösthuden är lös och hänger kan den ofta fyllas ut med bröstimplantat på ett estetiskt vackert sätt. Här kan du läsa om hur ett bröstlyft går till.',
-  openGraph: {
-    title: 'Bröstlyft i Stockholm - Dahliakliniken',
-    description:
-      'Om brösthuden är lös och hänger kan den ofta fyllas ut med bröstimplantat på ett estetiskt vackert sätt. Här kan du läsa om hur ett bröstlyft går till.'
-  },
-  twitter: {
-    title: 'Bröstlyft i Stockholm - Dahliakliniken',
-    description:
-      'Om brösthuden är lös och hänger kan den ofta fyllas ut med bröstimplantat på ett estetiskt vackert sätt. Här kan du läsa om hur ett bröstlyft går till.'
-  }
-}
+  path: '/brostoperationer/brostlyft'
+})
 
 export default async function Page() {
   const canonical = canonicalUrl('/brostoperationer/brostlyft')
@@ -44,7 +35,7 @@ export default async function Page() {
         image: {
           '@type': 'ImageObject',
           '@id': `${canonical}#primaryimage`,
-          url: `${SITE_URL}/_next/static/media/_N3A7179.4d8b8053.jpg`
+          url: `${canonicalUrl()}/images/_N3A7179.jpg`
         },
         mainEntityOfPage: { '@id': canonical },
         potentialAction: {
@@ -65,37 +56,14 @@ export default async function Page() {
         primaryImageOfPage: { '@id': `${canonical}#primaryimage` },
         datePublished: DATE_PUBLISHED,
         ...(dateModified && { dateModified })
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Hem',
-            item: `${SITE_URL}/`
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Bröstoperationer',
-            item: `${SITE_URL}/brostoperationer`
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: 'Bröstlyft',
-            item: canonical
-          }
-        ]
       }
     ]
   }
 
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd id="jsonld-brostlyft" data={jsonLd} />
+      <BreadcrumbJsonLd path="/brostoperationer/brostlyft" />
       <Brostlyft />
     </>
   )

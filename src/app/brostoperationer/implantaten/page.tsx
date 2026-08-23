@@ -1,5 +1,5 @@
-import { Metadata } from 'next'
-
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 import {
   canonicalUrl,
   DATE_PUBLISHED,
@@ -11,21 +11,12 @@ import { getLastModified } from '@/utils/getLastModified'
 
 import Implantaten from './Implantaten'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Implantaten - Dahliakliniken',
   description:
     'Det finns många olika varianter av bröstimplantat och vid tillverkningen kan man variera materialet i implantatet, hur mycket man fyller implantatet, formen på implantatet och skalets ytstruktur.',
-  openGraph: {
-    title: 'Implantaten - Dahliakliniken',
-    description:
-      'Det finns många olika varianter av bröstimplantat och vid tillverkningen kan man variera materialet i implantatet, hur mycket man fyller implantatet, formen på implantatet och skalets ytstruktur.'
-  },
-  twitter: {
-    title: 'Implantaten - Dahliakliniken',
-    description:
-      'Det finns många olika varianter av bröstimplantat och vid tillverkningen kan man variera materialet i implantatet, hur mycket man fyller implantatet, formen på implantatet och skalets ytstruktur.'
-  }
-}
+  path: '/brostoperationer/implantaten'
+})
 
 export default async function Page() {
   const canonical = canonicalUrl('/brostoperationer/implantaten')
@@ -44,7 +35,7 @@ export default async function Page() {
         image: {
           '@type': 'ImageObject',
           '@id': `${canonical}#primaryimage`,
-          url: `${SITE_URL}/_next/static/media/_N3A0080.87f32f0b.jpg`
+          url: `${canonicalUrl()}/images/_N3A0080.jpg`
         },
         mainEntityOfPage: { '@id': canonical }
       },
@@ -61,37 +52,14 @@ export default async function Page() {
         primaryImageOfPage: { '@id': `${canonical}#primaryimage` },
         datePublished: DATE_PUBLISHED,
         ...(dateModified && { dateModified })
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Hem',
-            item: `${SITE_URL}/`
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Bröstoperationer',
-            item: `${SITE_URL}/brostoperationer`
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: 'Implantaten',
-            item: canonical
-          }
-        ]
       }
     ]
   }
 
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd id="jsonld-implantaten" data={jsonLd} />
+      <BreadcrumbJsonLd path="/brostoperationer/implantaten" />
       <Implantaten />
     </>
   )

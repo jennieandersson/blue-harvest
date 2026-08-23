@@ -1,5 +1,5 @@
-import { Metadata } from 'next'
-
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 import {
   canonicalUrl,
   DATE_PUBLISHED,
@@ -11,21 +11,12 @@ import { getLastModified } from '@/utils/getLastModified'
 
 import Brostoperationer from './Brostoperationer'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Bröstoperationer i Stockholm - Dahliakliniken',
   description:
     'Kliniken för estetisk bröstförstoring och bröstlyft. Vi är med dig på resan mot dina drömbröst. Från början till slut. Från första mötet, konsultationen till slutkontrollen.',
-  openGraph: {
-    title: 'Bröstoperationer i Stockholm - Dahliakliniken',
-    description:
-      'Kliniken för estetisk bröstförstoring och bröstlyft. Vi är med dig på resan mot dina drömbröst. Från början till slut. Från första mötet, konsultationen till slutkontrollen.'
-  },
-  twitter: {
-    title: 'Bröstoperationer i Stockholm - Dahliakliniken',
-    description:
-      'Kliniken för estetisk bröstförstoring och bröstlyft. Vi är med dig på resan mot dina drömbröst. Från början till slut. Från första mötet, konsultationen till slutkontrollen.'
-  }
-}
+  path: '/brostoperationer'
+})
 
 export default async function Page() {
   const canonical = canonicalUrl('/brostoperationer')
@@ -86,31 +77,14 @@ export default async function Page() {
             item: `${SITE_URL}/brostoperationer/fore-och-efter`
           }
         ]
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Hem',
-            item: `${SITE_URL}/`
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Bröstoperationer',
-            item: `${SITE_URL}/brostoperationer`
-          }
-        ]
       }
     ]
   }
 
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd id="jsonld-brostoperationer" data={jsonLd} />
+      <BreadcrumbJsonLd path="/brostoperationer" />
       <Brostoperationer />
     </>
   )

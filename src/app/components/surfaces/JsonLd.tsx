@@ -1,9 +1,9 @@
 type JsonLdProps = {
   data: object
-  id?: string
+  id: string
 }
 
-export const JsonLd = ({ data, id = 'jsonld-schema' }: JsonLdProps) => {
+export const JsonLd = ({ data, id }: JsonLdProps) => {
   // Escape characters that could break out of the script tag
   const json = JSON.stringify(data)
     .replace(/</g, '\\u003c')

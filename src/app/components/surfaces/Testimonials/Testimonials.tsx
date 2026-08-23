@@ -3,6 +3,8 @@ import { CLINIC_ID, SITE_URL } from '@/app/config/site'
 import { Testimonial } from '@/components/surfaces/Testimonials/Testimonial'
 import { testimonials } from '@/data/testimonialdata'
 
+const FEATURED_TESTIMONIAL_COUNT = 3
+
 const getRandomTestimonials = (count: number) => {
   const shuffled = [...testimonials]
 
@@ -15,9 +17,9 @@ const getRandomTestimonials = (count: number) => {
 }
 
 export default function Testimonials() {
-  const randomTestimonials = getRandomTestimonials(3)
+  const selectedTestimonials = getRandomTestimonials(FEATURED_TESTIMONIAL_COUNT)
 
-  const graph = randomTestimonials.map((t) => ({
+  const graph = selectedTestimonials.map((t) => ({
     '@type': 'Quotation',
     '@id': `${SITE_URL}/#testimonial-${t.title}-${t.date}`,
     text: t.content,
@@ -37,7 +39,7 @@ export default function Testimonials() {
   return (
     <div className="w-full overflow-x-auto overflow-y-hidden">
       <div className="flex min-w-min justify-center gap-4 lg:min-w-0">
-        {randomTestimonials.map((testimonial) => (
+        {selectedTestimonials.map((testimonial) => (
           <Testimonial
             key={`${testimonial.title}-${testimonial.date}-${testimonial.content.slice(0, 20)}`}
             title={testimonial.title}
