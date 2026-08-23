@@ -51,6 +51,7 @@ const Garanti = () => {
 
           <Section>
             <H2>{t('capsuleGuarantee.title')}</H2>
+            <P>{t('capsuleGuarantee.description')}</P>
             <P>{t('capsuleGuarantee.price')}</P>
             <Ul>
               <Li>{t('capsuleGuarantee.points.point1')}</Li>
