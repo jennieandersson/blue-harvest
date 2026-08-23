@@ -1,3 +1,10 @@
+# [1.35.0](https://github.com/dahliakliniken/drgribbe/compare/v1.34.0...v1.35.0) (2026-08-23)
+
+
+### Features
+
+* improve seo ([#299](https://github.com/dahliakliniken/drgribbe/issues/299)) ([aeb5bf3](https://github.com/dahliakliniken/drgribbe/commit/aeb5bf327ba5be12fdfa3d15fc760d570d782051))
+
 # [1.34.0](https://github.com/dahliakliniken/drgribbe/compare/v1.33.0...v1.34.0) (2026-08-23)
 
 
