@@ -1,3 +1,10 @@
+# [1.34.0](https://github.com/dahliakliniken/drgribbe/compare/v1.33.0...v1.34.0) (2026-08-23)
+
+
+### Features
+
+* update copy ([#298](https://github.com/dahliakliniken/drgribbe/issues/298)) ([8203b42](https://github.com/dahliakliniken/drgribbe/commit/8203b425c91ead0fc71005d5a424559caad96e4c))
+
 # [1.33.0](https://github.com/dahliakliniken/drgribbe/compare/v1.32.0...v1.33.0) (2026-08-16)
 
 
