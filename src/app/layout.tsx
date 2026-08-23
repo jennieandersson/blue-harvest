@@ -12,6 +12,7 @@ import { BUSINESS_IMAGES, BUSINESS_NAME } from '@/data/businessData'
 import { Breadcrumbs } from './components/navigation/Breadcrumbs'
 import { HeaderWithFooter } from './components/surfaces/HeaderWithFooter'
 import { JsonLd } from './components/surfaces/JsonLd'
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE } from './config/metadata'
 import { ORG_ID, SITE_URL } from './config/site'
 import { ephesis, josefinSans } from './fonts'
 
@@ -19,27 +20,8 @@ export const runtime = 'nodejs'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title:
-    'Dahliakliniken – Expert på estetisk bröstförstoring och bröstlyft i Stockholm',
-  description:
-    'Dr Örjan Gribbes nya klinik i Stockholm är specialiserad på estetiska bröstoperationer, såsom bröstförstoringar, bröstförminskningar och bröstlyft.',
-  openGraph: {
-    title:
-      'Dahliakliniken – Expert på estetisk bröstförstoring och bröstlyft i Stockholm',
-    description:
-      'Dr Örjan Gribbes nya klinik i Stockholm är specialiserad på estetiska bröstoperationer, såsom bröstförstoringar, bröstförminskningar och bröstlyft.',
-    url: 'https://www.dahliakliniken.se/',
-    siteName: 'Dahliakliniken',
-    type: 'website',
-    locale: 'sv_SE'
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title:
-      'Dahliakliniken – Expert på estetisk bröstförstoring och bröstlyft i Stockholm',
-    description:
-      'Dr Örjan Gribbes nya klinik i Stockholm är specialiserad på estetiska bröstoperationer, såsom bröstförstoringar, bröstförminskningar och bröstlyft.'
-  }
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION
 }
 
 const org = {
@@ -74,6 +56,7 @@ export default async function RootLayout({
     >
       <head>
         <JsonLd
+          id="jsonld-organization"
           data={{ '@context': 'https://schema.org', '@graph': [org, webSite] }}
         />
       </head>

@@ -39,48 +39,52 @@ const KontaktOchBesok = () => {
             />
           </SpaceContainer>
           <div className="grid gap-4 gap-y-8 md:grid-cols-2">
-            <div className="space-y-4">
-              <H2>{t('contact.heading')}</H2>
-              <div className="flex items-center gap-4">
-                <Phone className="h-6 w-6 text-[#1B3B35]" />
-                <div>
-                  <P>
-                    {t.rich('contact.phone', {
-                      phone: (chunks) => <span className="block">{chunks}</span>
-                    })}
-                  </P>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <Mail className="h-6 w-6 text-[#1B3B35]" />
-                <div>
-                  <P>
-                    {t.rich('contact.email', {
-                      email: (chunks) => {
-                        const email = String(chunks).trim() // Ensure chunks is a string
-                        return (
-                          <a
-                            className="block"
-                            href={`mailto:${email}`}
-                            key={emailIndex++}
-                          >
-                            {email}
-                          </a>
+            <address className="contents not-italic">
+              <div className="space-y-4">
+                <H2>{t('contact.heading')}</H2>
+                <div className="flex items-center gap-4">
+                  <Phone className="h-6 w-6 text-[#1B3B35]" />
+                  <div>
+                    <P>
+                      {t.rich('contact.phone', {
+                        phone: (chunks) => (
+                          <span className="block">{chunks}</span>
                         )
-                      }
-                    })}
-                  </P>
+                      })}
+                    </P>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Mail className="h-6 w-6 text-[#1B3B35]" />
+                  <div>
+                    <P>
+                      {t.rich('contact.email', {
+                        email: (chunks) => {
+                          const email = String(chunks).trim() // Ensure chunks is a string
+                          return (
+                            <a
+                              className="block"
+                              href={`mailto:${email}`}
+                              key={emailIndex++}
+                            >
+                              {email}
+                            </a>
+                          )
+                        }
+                      })}
+                    </P>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex items-start gap-2">
-              <MapPin className="mt-1 h-6 w-6 shrink-0" />
-              <div>
-                <H2>{t('location.heading')}</H2>
-                <P>{t('location.address')}</P>
-                <P>{t('location.addressDetails')}</P>
+              <div className="flex items-start gap-2">
+                <MapPin className="mt-1 h-6 w-6 shrink-0" />
+                <div>
+                  <H2>{t('location.heading')}</H2>
+                  <P>{t('location.address')}</P>
+                  <P>{t('location.addressDetails')}</P>
+                </div>
               </div>
-            </div>
+            </address>
 
             <div className="flex items-start gap-2">
               <Car className="mt-1 h-6 w-6 shrink-0" />

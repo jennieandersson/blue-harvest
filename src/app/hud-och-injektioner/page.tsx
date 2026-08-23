@@ -1,5 +1,5 @@
-import { Metadata } from 'next'
-
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 import {
   canonicalUrl,
   DATE_PUBLISHED,
@@ -11,21 +11,12 @@ import { getLastModified } from '@/utils/getLastModified'
 
 import HudOchInjektioner from './HudOchInjektioner'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Hud & injektioner - Dahliakliniken',
   description:
     'Det finns olika behandlingar med muskelavslappnande medel som kan ge fint och bra resultat. Muskelavslappnande kan användas mot behandling av rynkor och för medicinsk användning t.ex. mot spänningshuvudvärk och svettningar.',
-  openGraph: {
-    title: 'Hud & injektioner - Dahliakliniken',
-    description:
-      'Det finns olika behandlingar med muskelavslappnande medel som kan ge fint och bra resultat. Muskelavslappnande kan användas mot behandling av rynkor och för medicinsk användning t.ex. mot spänningshuvudvärk och svettningar.'
-  },
-  twitter: {
-    title: 'Hud & injektioner - Dahliakliniken',
-    description:
-      'Det finns olika behandlingar med muskelavslappnande medel som kan ge fint och bra resultat. Muskelavslappnande kan användas mot behandling av rynkor och för medicinsk användning t.ex. mot spänningshuvudvärk och svettningar.'
-  }
-}
+  path: '/hud-och-injektioner'
+})
 
 export default async function Page() {
   const canonical = canonicalUrl('/hud-och-injektioner')
@@ -44,7 +35,7 @@ export default async function Page() {
         image: {
           '@type': 'ImageObject',
           '@id': `${canonical}#primaryimage`,
-          url: `${SITE_URL}/_next/static/media/ansiktsmuskler.0a0b245d.jpeg`
+          url: `${canonicalUrl()}/images/ansiktsmuskler.jpeg`
         },
         procedureType: 'PercutaneousProcedure',
         bodyLocation: [
@@ -87,31 +78,14 @@ export default async function Page() {
         },
         datePublished: DATE_PUBLISHED,
         ...(dateModified && { dateModified })
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Hem',
-            item: SITE_URL
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Hud & injektioner',
-            item: `${SITE_URL}/hud-och-injektioner`
-          }
-        ]
       }
     ]
   }
 
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd id="jsonld-hud-och-injektioner" data={jsonLd} />
+      <BreadcrumbJsonLd path="/hud-och-injektioner" />
       <HudOchInjektioner />
     </>
   )

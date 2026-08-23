@@ -7,6 +7,8 @@ import { Fragment } from 'react'
 
 import { determineActiveLinkColor } from '@/utils/determineActiveLinkColor'
 
+import { breadcrumbRouteKey, formatBreadcrumbFallback } from './breadcrumbLabels'
+
 export const Breadcrumbs = () => {
   const t = useTranslations('site-breadcrumbs')
   const paths = usePathname()
@@ -22,22 +24,14 @@ export const Breadcrumbs = () => {
     return null
   }
 
-  const slugToCamelCase = (slug: string) =>
-    slug.replace(/-([a-z])/g, (_, char: string) => char.toUpperCase())
-
   const getBreadcrumbLabel = (link: string) => {
-    const routeKey = `breadcrumbNav.routes.${slugToCamelCase(link)}`
+    const routeKey = breadcrumbRouteKey(link)
 
-    // Check if translation exists
     if (t.has(routeKey)) {
       return t(routeKey)
     }
 
-    // If no translation, format the path segment
-    return link
-      .split('-')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ')
+    return formatBreadcrumbFallback(link)
   }
 
   return (

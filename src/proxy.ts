@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+import { isPreviewDeployment } from '@/app/config/site'
+
 export function proxy(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
   const isDev = process.env.NODE_ENV !== 'production'
@@ -130,6 +132,10 @@ export function proxy(request: NextRequest) {
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue
   )
+
+  if (isPreviewDeployment) {
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+  }
 
   try {
     const origin = request.nextUrl.origin

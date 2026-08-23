@@ -86,9 +86,8 @@ export const HeaderWithFooter = () => {
   return (
     <header
       style={{ bottom: bottomOffset }}
-      className={`fixed right-0 left-0 z-50 w-full bg-beige transition-[height] duration-300 lg:top-0 ${
-        isAtBottom ? 'h-52' : 'h-20'
-      }`}
+      className={`fixed right-0 left-0 z-50 w-full bg-beige transition-[height] duration-300 lg:top-0 ${isAtBottom ? 'h-52' : 'h-20'
+        }`}
     >
       <div className="p-gapSpace flex items-center md:p-4">
         <Logo />

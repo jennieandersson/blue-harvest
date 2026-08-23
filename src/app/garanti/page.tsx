@@ -1,23 +1,25 @@
-import { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('garanti.page.metadata')
-  const title = t('title')
-  const description = t('description')
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description
-    },
-    twitter: {
-      title,
-      description
-    }
-  }
+import Garanti from './Garanti'
+
+export async function generateMetadata() {
+  const t = await getTranslations('garanti.page.metadata')
+
+  return createPageMetadata({
+    title: t('title'),
+    description: t('description'),
+    path: '/garanti'
+  })
 }
 
-export { default } from './Garanti'
+export default function Page() {
+  return (
+    <>
+      <BreadcrumbJsonLd path="/garanti" />
+      <Garanti />
+    </>
+  )
+}

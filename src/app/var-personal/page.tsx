@@ -1,23 +1,25 @@
-import { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('var-personal.page.metadata')
-  const title = t('title')
-  const description = t('description')
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description
-    },
-    twitter: {
-      title,
-      description
-    }
-  }
+import VarPersonal from './VarPersonal'
+
+export async function generateMetadata() {
+  const t = await getTranslations('var-personal.page.metadata')
+
+  return createPageMetadata({
+    title: t('title'),
+    description: t('description'),
+    path: '/var-personal'
+  })
 }
 
-export { default } from './VarPersonal'
+export default function Page() {
+  return (
+    <>
+      <BreadcrumbJsonLd path="/var-personal" />
+      <VarPersonal />
+    </>
+  )
+}

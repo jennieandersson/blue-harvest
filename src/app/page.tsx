@@ -1,15 +1,14 @@
 import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 
-import { CLINIC_ID } from '@/app/config/site'
-import { allTreatmentsData } from '@/data/allTreatmentsData'
 import {
-  BUSINESS_ADDRESS,
-  BUSINESS_CONTACT,
-  BUSINESS_IMAGES,
-  BUSINESS_NAME,
-  BUSINESS_SOCIAL
-} from '@/data/businessData'
+  createPageMetadata,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE
+} from '@/app/config/metadata'
+import { canonicalUrl, CLINIC_ID, ORG_ID } from '@/app/config/site'
+import { allTreatmentsData } from '@/data/allTreatmentsData'
+import { BUSINESS_NAME, BUSINESS_SOCIAL } from '@/data/businessData'
 import belowheadingImage from '@/public/images/_N3A9899.jpg'
 import Consultation from '@/public/images/N3A0033_.jpg'
 import WaitingRoom from '@/public/images/N3A7746_edited.png'
@@ -29,6 +28,11 @@ import { P } from './components/typography/P'
 import { BgColors } from './types'
 
 export const metadata = {
+  ...createPageMetadata({
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    path: '/'
+  }),
   other: {
     'google-site-verification': 'scjbJTK54uTe66Okuk5_r-T36DpV5FkEsy8eWukJ28A'
   }
@@ -43,16 +47,7 @@ export default async function Home() {
     '@type': 'MedicalClinic',
     '@id': CLINIC_ID,
     name: BUSINESS_NAME,
-    image: BUSINESS_IMAGES.openGraph,
-    url: BUSINESS_CONTACT.url,
-    telephone: BUSINESS_CONTACT.telephone,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: BUSINESS_ADDRESS.streetAddress,
-      addressLocality: BUSINESS_ADDRESS.addressLocality,
-      postalCode: BUSINESS_ADDRESS.postalCode,
-      addressCountry: BUSINESS_ADDRESS.addressCountry
-    },
+    url: canonicalUrl(),
     description: tPage('schema.description'),
     medicalSpecialty: {
       '@type': 'MedicalSpecialty',
@@ -66,12 +61,13 @@ export default async function Home() {
       '@type': 'Place',
       name: tPage('schema.areaServedName')
     },
-    sameAs: [BUSINESS_SOCIAL.facebook, BUSINESS_SOCIAL.instagram]
+    sameAs: [BUSINESS_SOCIAL.facebook, BUSINESS_SOCIAL.instagram],
+    parentOrganization: { '@id': ORG_ID }
   }
 
   return (
     <>
-      <JsonLd data={schemaData} />
+      <JsonLd id="jsonld-clinic" data={schemaData} />
       <Hero />
       <Card
         bgColor={BgColors.White}

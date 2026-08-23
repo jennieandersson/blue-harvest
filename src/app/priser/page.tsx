@@ -1,19 +1,20 @@
-import { Metadata } from 'next'
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 
-export const metadata: Metadata = {
+import Priser from './Priser'
+
+export const metadata = createPageMetadata({
   title: 'Prislista - Dahliakliniken',
   description:
     'I alla priser ingår allt såsom narkos, implantat, övernattning och återbesök.',
-  openGraph: {
-    title: 'Prislista - Dahliakliniken',
-    description:
-      'I alla priser ingår allt såsom narkos, implantat, övernattning och återbesök.'
-  },
-  twitter: {
-    title: 'Prislista - Dahliakliniken',
-    description:
-      'I alla priser ingår allt såsom narkos, implantat, övernattning och återbesök.'
-  }
-}
+  path: '/priser'
+})
 
-export { default } from './Priser'
+export default function Page() {
+  return (
+    <>
+      <BreadcrumbJsonLd path="/priser" />
+      <Priser />
+    </>
+  )
+}

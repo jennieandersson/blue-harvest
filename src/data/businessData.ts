@@ -1,6 +1,8 @@
+import { SITE_URL } from '@/app/config/site'
+
 export const BUSINESS_NAME = 'Dahliakliniken'
 export const BUSINESS_FULL_NAME = 'Dahliakliniken - Dr. Örjan Gribbe'
-export const BUSINESS_SITE_URL = 'https://www.dahliakliniken.se'
+export const BUSINESS_SITE_URL = SITE_URL.replace(/\/$/, '')
 
 export const BUSINESS_ADDRESS = {
   streetAddress: 'S:t Göransgatan 126',
@@ -21,6 +23,6 @@ export const BUSINESS_SOCIAL = {
 }
 
 export const BUSINESS_IMAGES = {
-  logo: `${BUSINESS_SITE_URL}/images/logo.svg`,
+  logo: `${BUSINESS_SITE_URL}/images/Logo.png`,
   openGraph: `${BUSINESS_SITE_URL}/opengraph-image.jpg`
 }

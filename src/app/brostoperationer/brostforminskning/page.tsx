@@ -1,5 +1,5 @@
-import { Metadata } from 'next'
-
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 import {
   canonicalUrl,
   DATE_PUBLISHED,
@@ -11,21 +11,12 @@ import { getLastModified } from '@/utils/getLastModified'
 
 import Brostforminskning from './Brostforminskning'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Bröstförminskning i Stockholm - Dahliakliniken',
   description:
     'Om den egna bysten är stor och tung kan brösten minskas genom en bröstförminskning. Operationen är mycket lik operationen bröstlyft med skillnaden att mer eller mindre egen bröstvävnad tas bort.',
-  openGraph: {
-    title: 'Bröstförminskning i Stockholm - Dahliakliniken',
-    description:
-      'Om den egna bysten är stor och tung kan brösten minskas genom en bröstförminskning. Operationen är mycket lik operationen bröstlyft med skillnaden att mer eller mindre egen bröstvävnad tas bort.'
-  },
-  twitter: {
-    title: 'Bröstförminskning i Stockholm - Dahliakliniken',
-    description:
-      'Om den egna bysten är stor och tung kan brösten minskas genom en bröstförminskning. Operationen är mycket lik operationen bröstlyft med skillnaden att mer eller mindre egen bröstvävnad tas bort.'
-  }
-}
+  path: '/brostoperationer/brostforminskning'
+})
 
 export default async function Page() {
   const canonical = canonicalUrl('/brostoperationer/brostforminskning')
@@ -44,7 +35,7 @@ export default async function Page() {
         image: {
           '@type': 'ImageObject',
           '@id': `${canonical}#primaryimage`,
-          url: `${SITE_URL}/_next/static/media/_N3A7302.7dc569a3.jpg`
+          url: `${canonicalUrl()}/images/_N3A7302.jpg`
         },
         mainEntityOfPage: { '@id': canonical },
         potentialAction: {
@@ -65,37 +56,14 @@ export default async function Page() {
         primaryImageOfPage: { '@id': `${canonical}#primaryimage` },
         datePublished: DATE_PUBLISHED,
         ...(dateModified && { dateModified })
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Hem',
-            item: `${SITE_URL}/`
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Bröstoperationer',
-            item: `${SITE_URL}/brostoperationer`
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: 'Bröstförminskning',
-            item: canonical
-          }
-        ]
       }
     ]
   }
 
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd id="jsonld-brostforminskning" data={jsonLd} />
+      <BreadcrumbJsonLd path="/brostoperationer/brostforminskning" />
       <Brostforminskning />
     </>
   )

@@ -1,5 +1,5 @@
-import { Metadata } from 'next'
-
+import { BreadcrumbJsonLd } from '@/app/components/navigation/BreadcrumbJsonLd'
+import { createPageMetadata } from '@/app/config/metadata'
 import {
   canonicalUrl,
   DATE_PUBLISHED,
@@ -11,21 +11,12 @@ import { getLastModified } from '@/utils/getLastModified'
 
 import Brostforstoring from './Brostforstoring'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Bröstförstoring i Stockholm - Dahliakliniken',
   description:
     'Brösten är för de flesta kvinnor mycket viktiga. De representerar kvinnlighet, skönhet och symboliserar fruktbarhet. Här kan du läsa om hur processen för bröstförstoring går till.',
-  openGraph: {
-    title: 'Bröstförstoring i Stockholm - Dahliakliniken',
-    description:
-      'Brösten är för de flesta kvinnor mycket viktiga. De representerar kvinnlighet, skönhet och symboliserar fruktbarhet. Här kan du läsa om hur processen för bröstförstoring går till.'
-  },
-  twitter: {
-    title: 'Bröstförstoring i Stockholm - Dahliakliniken',
-    description:
-      'Brösten är för de flesta kvinnor mycket viktiga. De representerar kvinnlighet, skönhet och symboliserar fruktbarhet. Här kan du läsa om hur processen för bröstförstoring går till.'
-  }
-}
+  path: '/brostoperationer/brostforstoring'
+})
 
 export default async function Page() {
   const canonical = canonicalUrl('/brostoperationer/brostforstoring')
@@ -44,7 +35,7 @@ export default async function Page() {
         image: {
           '@type': 'ImageObject',
           '@id': `${canonical}#primaryimage`,
-          url: `${SITE_URL}/_next/static/media/_N3A7297.c20ccefe.jpg`
+          url: `${canonicalUrl()}/images/_N3A7297.jpg`
         },
         mainEntityOfPage: { '@id': canonical },
         potentialAction: {
@@ -65,37 +56,14 @@ export default async function Page() {
         primaryImageOfPage: { '@id': `${canonical}#primaryimage` },
         datePublished: DATE_PUBLISHED,
         ...(dateModified && { dateModified })
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Hem',
-            item: `${SITE_URL}/`
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Bröstoperationer',
-            item: `${SITE_URL}/brostoperationer`
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: 'Bröstförstoring',
-            item: canonical
-          }
-        ]
       }
     ]
   }
 
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd id="jsonld-brostforstoring" data={jsonLd} />
+      <BreadcrumbJsonLd path="/brostoperationer/brostforstoring" />
       <Brostforstoring />
     </>
   )

@@ -1,4 +1,3 @@
-// src/lib/getLastModified.ts
 import lastModified from '@/lastModified.json' with { type: 'json' }
 
 const map = lastModified as Record<string, string>
@@ -9,5 +8,5 @@ export function getLastModified(path: string): string | undefined {
   const normalized =
     path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path
 
-  return map[normalized] ?? map['/']
+  return map[normalized]
 }
