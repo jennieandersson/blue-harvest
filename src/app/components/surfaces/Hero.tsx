@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { useDelayedAnimation } from '@/hooks/useDelayedAnimation'
-import HeroImage from '@/public/images/hero-image.jpg'
+import HeroImage from '@/public/images/hero-image-1920.jpg'
 
 import { A } from '../typography/A'
 
@@ -29,13 +29,15 @@ export const Hero = () => {
       })}
     >
       <section className="relative flex h-[calc(100dvh-80px)] flex-col items-center justify-center">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[#c8b8a8]">
           <Image
             src={HeroImage}
-            className="h-full w-full object-cover object-center"
-            priority
-            placeholder="blur"
             alt={tPage('altText.heroImage')}
+            className="object-cover object-center"
+            fill
+            priority
+            fetchPriority="high"
+            sizes="100vw"
           />
         </div>
 
